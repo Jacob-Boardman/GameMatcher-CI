@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+        nginx:
+                image: jacobboardman/nginx
+                depends_on:
+                        - api
+                        - client
+                container_name: nginx
+                ports: 
+                        - target: 80
+                          published: 80
+                          protocol: tcp
+        api:
+                image: jacobboardman/gamematcher-api
+                container_name: api
+        client:
+                image: jacobboardman/gamematcher-front
+                container_name: client
