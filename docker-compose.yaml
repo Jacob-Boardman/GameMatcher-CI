@@ -10,9 +10,23 @@ services:
                         - target: 80
                           published: 80
                           protocol: tcp
+                        - target: 443
+                          published: 443
+                          protocol: tcp
+                volumes: 
+                        - /etc/letsencrypt/:/etc/letsencrypt/
+       #jenkins:
+                #build: bobcrutchley/jenkins
+                #container-name: jenkins
+                # volumes: 
+                #- "/var/run/docker.sock:/var/run/docker/sock"
+                #- "./jenkins/jobs:/var/jenkins_home/jobs:Z"
         api:
                 image: jacobboardman/gamematcher-api
                 container_name: api
+                ports:
+                        - target: 3000
+                          published: 3000
         client:
                 image: jacobboardman/gamematcher-front
                 container_name: client

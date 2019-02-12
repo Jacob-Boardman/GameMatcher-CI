@@ -1,2 +1,2 @@
 FROM nginx:latest
-COPY nginx.conf /ect/nginx.nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
