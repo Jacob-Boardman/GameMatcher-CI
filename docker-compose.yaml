@@ -15,12 +15,17 @@ services:
                           protocol: tcp
                 volumes: 
                         - /etc/letsencrypt/:/etc/letsencrypt/
-       #jenkins:
-                #build: bobcrutchley/jenkins
-                #container-name: jenkins
-                # volumes: 
-                #- "/var/run/docker.sock:/var/run/docker/sock"
-                #- "./jenkins/jobs:/var/jenkins_home/jobs:Z"
+        jenkins:
+                container_name: jenkins
+                image: bobcrutchley/jenkins:latest
+                ports: 
+                        - target: 8080
+                          published: 8080
+                          protocol: tcp
+                volumes: 
+                        - type: bind
+                          source: /var/run/docker.sock
+                          target: /var/run/docker.sock
         api:
                 image: jacobboardman/gamematcher-api
                 container_name: api
